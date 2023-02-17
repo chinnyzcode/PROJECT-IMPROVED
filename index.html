@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -19,11 +21,11 @@
       <div class="weather-app-wrapper">
         <div class="weather-app">
           <div class="overview">
-            <h1>New York</h1>
+            <h1 id="city"></h1>
 
             <ul>
               <li>Friday 5:00</li>
-              <li>Clear</li>
+              <li id="description"></li>
             </ul>
           </div>
           <div class="row">
@@ -35,16 +37,15 @@
                   class="float-left"
                 />
                 <div class="floatleft">
-                  <strong>12</strong
+                  <strong id="temperature"></strong
                   ><span class="units">°C|<a href="#">°F</a></span>
                 </div>
               </div>
             </div>
             <div class="col-6">
               <ul>
-                <li>Precipitation: 0%</li>
-                <li>Humidity: 73%</li>
-                <li>Wind: 2Km/hr</li>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind:<span id="wind"></span>Km/hr</li>
               </ul>
             </div>
           </div>
