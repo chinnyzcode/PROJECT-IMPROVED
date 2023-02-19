@@ -56,3 +56,12 @@ li:first-letter {
   font-size: 16px;
   top: -34px;
 }
+
+.d-flex-weather-temperature .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.d-flex-weather-temperature .active:hover {
+  text-decoration: none;
+}

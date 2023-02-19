@@ -31,6 +31,8 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
+  celciusTemperature = response.data.temperature.current;
+
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
   cityElement.innerHTML = response.data.city;
   descriptionElement.innerHTML = response.data.condition.description;
@@ -56,7 +58,34 @@ function search(city) {
   axios.get(apiUrl).then(displayTemperature);
 }
 
+function displayFahreinheitTemperature(event) {
+  event.preventDefault();
+  let fahreinheitTemperature = (14 * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temperature");
+
+  celciusLink.classList.remove("active");
+  fahreinheitLink.classList.add("active");
+  temperatureElement.innerHTML = Math.round(fahreinheitTemperature);
+}
+
+function displayCelciusTemperature(event) {
+  event.preventDefault();
+  celciusLink.classList.add("active");
+  fahreinheitLink.classList.remove("active");
+
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
+}
+
+let celciusTemperature = null;
+
 search("New York");
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let fahreinheitLink = document.querySelector("#fahrenheit-link");
+fahreinheitLink.addEventListener("click", displayFahreinheitTemperature);
+
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", displayCelciusTemperature);
