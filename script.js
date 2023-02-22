@@ -22,7 +22,8 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class= row>`;
@@ -50,6 +51,13 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div> `;
   forecastElement.innerHTML = forecastHTML;
 }
+function getForecast(coordinates) {
+  let apiKey = "ab1f38b39f08otc4b3e5ac296fde7590";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=ab1f38b39f08otc4b3e5ac296fde7590&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
+  console.log(apiUrl);
+}
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
@@ -73,6 +81,8 @@ function displayTemperature(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("Alt", response.data.condition.description);
+
+  getForecast(response.data.coordinates);
 }
 
 function handleSubmit(event) {
@@ -118,5 +128,3 @@ fahreinheitLink.addEventListener("click", displayFahreinheitTemperature);
 
 let celciusLink = document.querySelector("#celcius-link");
 celciusLink.addEventListener("click", displayCelciusTemperature);
-
-displayForecast();
